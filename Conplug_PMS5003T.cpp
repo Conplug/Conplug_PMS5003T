@@ -29,7 +29,7 @@ Conplug_PMS5003T::Conplug_PMS5003T(SoftwareSerial* pPmsSerial)
     
     DelayValue[Conplug_PMS5003T::AFTER_SEND_PASSIVE_CMD] = 50;
     DelayValue[Conplug_PMS5003T::AFTER_SEND_REQUEST_CMD] = 50;
-    DelayValue[Conplug_PMS5003T::SERIAL_READ] = 5;
+    DelayValue[Conplug_PMS5003T::SERIAL_READ] = 10;
 }
 
 int Conplug_PMS5003T::begin()
