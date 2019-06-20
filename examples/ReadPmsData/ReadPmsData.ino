@@ -24,21 +24,17 @@ SoftwareSerial SerialSensor(D7, D8); // RX, TX
 Conplug_PMS5003T Pms(&SerialSensor);
 
 void setup() {
+
   Serial.begin(9600);
 
   //
   // Sensors must be initialized later.
   //
-  delay(3000);
 
   //Pms.setDelay(Conplug_PMS5003T::SERIAL_READ, 10);
 
-  if(Pms.begin()) {
-    Serial.println("PMSX003 initialize successfully.");
-  }
-  else {
-    Serial.println("PMSX003 initialize unsuccessfully.");
-  }
+  Pms.begin();
+
 }
 
 void loop() {
@@ -48,21 +44,38 @@ void loop() {
   // Running readPms before running pm2_5, temp, humi and readDeviceType.
   //
   if(pd = Pms.readPms()) {
-    Serial.print("readPm2_5=");
-    Serial.println(Pms.pm2_5());
-    Serial.print("readTemp=");
-    Serial.println(Pms.temp());
-    Serial.print("readHumi=");
-    Serial.println(Pms.humi());
-
-    if(Pms.readDeviceType() == Conplug_PMS5003T::PMS5003T)
+    if(Pms.readDeviceType() == Conplug_PMS5003T::PMS5003T) {
       Serial.println("PMS5003T is detected.");
-    else
+
+      Serial.print("PM1.0=");
+      Serial.println(Pms.pm1_0());
+      Serial.print("PM2.5=");
+      Serial.println(Pms.pm2_5());
+      Serial.print("PM10=");
+      Serial.println(Pms.pm10_0());
+      Serial.print("Temperature=");
+      Serial.println(Pms.temp());
+      Serial.print("Humidity=");
+      Serial.println(Pms.humi());
+    }
+    else {
       Serial.println("PMS3003 is detected.");
+
+      Serial.print("PM1.0=");
+      Serial.println(Pms.pm1_0());
+      Serial.print("PM2.5=");
+      Serial.println(Pms.pm2_5());
+      Serial.print("PM10=");
+      Serial.println(Pms.pm10_0());
+
+      PMS3003_DATA* pd3003 = (PMS3003_DATA*)pd;
+    }
   }
   else {
     Serial.println("PMS data format is wrong.");
   }
+
+  Serial.println();
 
   //delay(2000);
 }
