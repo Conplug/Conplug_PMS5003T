@@ -52,6 +52,37 @@ struct PMS5003T_DATA {
     
     uint16_t PM_TEMP;
     uint16_t PM_HUMI;
+    
+    uint8_t ERRCODE;
+    uint8_t VERCODE;
+    
+    uint16_t CHECKSUM;
+};
+
+struct PMS3003_DATA {
+    uint8_t SIG_1;
+    uint8_t SIG_2;
+    uint16_t DATA_LENGTH;
+    
+    //
+    // Standard Particles, CF=1
+    //
+    uint16_t PM_SP_UG_1_0;
+    uint16_t PM_SP_UG_2_5;
+    uint16_t PM_SP_UG_10_0;
+
+    //
+    // Atmospheric environment
+    //
+    uint16_t PM_AE_UG_1_0;
+    uint16_t PM_AE_UG_2_5;
+    uint16_t PM_AE_UG_10_0;
+    
+    uint16_t RSV7;
+    uint16_t RSV8;
+    uint16_t RSV9;
+
+    uint16_t CHECKSUM;
 };
 #pragma pack(pop)
 
@@ -76,10 +107,14 @@ public:
     }
     PMS_DELAY;
 
+    int LastErr;
+
     Conplug_PMS5003T(SoftwareSerial* pPmsSerial);
-    int begin();
+    void begin();
     PMS5003T_DATA* readPms();
-    int pm2_5();
+    int pm1_0(); // PM1.0 ug/m^3
+    int pm2_5(); // PM2.5 ug/m^3
+    int pm10_0(); // PM10 ug/m^3
     float temp();
     float humi();
     PMS_TYPE readDeviceType();
