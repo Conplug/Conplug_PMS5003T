@@ -28,8 +28,8 @@ Conplug_PMS5003T::Conplug_PMS5003T(SoftwareSerial* pPmsSerial)
     
     DeviceType = PMS5003T; // default
     
-    DelayValue[Conplug_PMS5003T::AFTER_SEND_PASSIVE_CMD] = 100;
-    DelayValue[Conplug_PMS5003T::AFTER_SEND_REQUEST_CMD] = 30;
+    DelayValue[Conplug_PMS5003T::AFTER_SEND_PASSIVE_CMD] = 300;
+    DelayValue[Conplug_PMS5003T::AFTER_SEND_REQUEST_CMD] = 50;
     DelayValue[Conplug_PMS5003T::SERIAL_READ] = 5;
     
     LastErr = 0;
