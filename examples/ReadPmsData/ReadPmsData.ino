@@ -30,8 +30,7 @@ void setup() {
   //
   // Sensors must be initialized later.
   //
-
-  //Pms.setDelay(Conplug_PMS5003T::SERIAL_READ, 10);
+  delay(5000);
 
   Pms.begin();
 
@@ -69,6 +68,7 @@ void loop() {
       Serial.println(Pms.pm10_0());
 
       PMS3003_DATA* pd3003 = (PMS3003_DATA*)pd;
+
     }
   }
   else {
@@ -77,5 +77,5 @@ void loop() {
 
   Serial.println();
 
-  //delay(2000);
+  delay(2000);
 }
