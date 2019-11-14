@@ -21,15 +21,15 @@
 #include "Conplug_PMS5003T.h"
 
 
-Conplug_PMS5003T::Conplug_PMS5003T(SoftwareSerial* pPmsSerial)
+Conplug_PMS5003T::Conplug_PMS5003T(SoftwareSerial* pPmsSerial, int8_t rxPin, int8_t txPin)
 {
     PmsSerial = pPmsSerial;
-    PmsSerial->begin(9600);
+    PmsSerial->begin(9600, rxPin, txPin);
     
     DeviceType = PMS5003T; // default
     
-    DelayValue[Conplug_PMS5003T::AFTER_SEND_PASSIVE_CMD] = 300;
-    DelayValue[Conplug_PMS5003T::AFTER_SEND_REQUEST_CMD] = 50;
+    DelayValue[Conplug_PMS5003T::AFTER_SEND_PASSIVE_CMD] = 100;
+    DelayValue[Conplug_PMS5003T::AFTER_SEND_REQUEST_CMD] = 30;
     DelayValue[Conplug_PMS5003T::SERIAL_READ] = 5;
     
     LastErr = 0;
