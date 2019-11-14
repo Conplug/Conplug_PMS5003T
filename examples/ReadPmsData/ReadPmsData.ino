@@ -19,9 +19,9 @@
 #include "Conplug_PMS5003T.h"
 
 #include "SoftwareSerial.h"
-SoftwareSerial SerialSensor(D7, D8); // RX, TX
+SoftwareSerial SerialSensor;
 
-Conplug_PMS5003T Pms(&SerialSensor);
+Conplug_PMS5003T Pms(&SerialSensor, D7, D8); // RX:D7, TX:D8
 
 void setup() {
 
@@ -30,7 +30,8 @@ void setup() {
   //
   // Sensors must be initialized later.
   //
-  delay(5000);
+
+  //Pms.setDelay(Conplug_PMS5003T::SERIAL_READ, 10);
 
   Pms.begin();
 
@@ -68,7 +69,6 @@ void loop() {
       Serial.println(Pms.pm10_0());
 
       PMS3003_DATA* pd3003 = (PMS3003_DATA*)pd;
-
     }
   }
   else {
