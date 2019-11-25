@@ -21,10 +21,10 @@
 #include "Conplug_PMS5003T.h"
 
 
-Conplug_PMS5003T::Conplug_PMS5003T(SoftwareSerial* pPmsSerial, int8_t rxPin, int8_t txPin)
+Conplug_PMS5003T::Conplug_PMS5003T(SoftwareSerial* pPmsSerial)
 {
     PmsSerial = pPmsSerial;
-    PmsSerial->begin(9600, rxPin, txPin);
+    PmsSerial->begin(9600);
     
     DeviceType = PMS5003T; // default
     
