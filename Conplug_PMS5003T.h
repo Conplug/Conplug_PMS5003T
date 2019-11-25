@@ -109,7 +109,7 @@ public:
 
     int LastErr;
 
-    Conplug_PMS5003T(SoftwareSerial* pPmsSerial, int8_t rxPin, int8_t txPin);
+    Conplug_PMS5003T(SoftwareSerial* pPmsSerial);
     void begin();
     PMS5003T_DATA* readPms();
     int pm1_0(); // PM1.0 ug/m^3
